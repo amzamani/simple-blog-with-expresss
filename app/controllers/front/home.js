@@ -18,7 +18,7 @@ exports.index = async (req, res) => {
     }
     
     // get all posts
-    const posts = await postModel.findAll(pagination.page, postsPerPage);
+    const posts = await postModel.findAll(pagination.page, postsPerPage).catch((err)=>console.log(err));
     const peresentedPosts = posts.map((post) => {
         post.created = dateService.normalDate(post.created_at);
         post.summary = postSummary.summary(post.content);
